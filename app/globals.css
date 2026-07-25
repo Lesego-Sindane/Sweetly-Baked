@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 24 100% 97%;
+  --foreground: 10 27% 23%;
+  --card: 30 100% 99%;
+  --card-foreground: 10 27% 23%;
+  --primary: 22 39% 53%;
+  --primary-foreground: 30 100% 98%;
+  --secondary: 28 47% 91%;
+  --secondary-foreground: 10 27% 23%;
+  --muted: 28 47% 92%;
+  --muted-foreground: 18 18% 38%;
+  --accent: 24 42% 85%;
+  --accent-foreground: 10 27% 23%;
+  --border: 24 28% 84%;
+  --input: 24 28% 84%;
+  --ring: 22 39% 53%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(185, 122, 87, 0.12), transparent 30rem),
+    #fff8f2;
+  color: #4b2e2b;
+}
+
+::selection {
+  background: rgba(185, 122, 87, 0.28);
+}
+
+.container-padded {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-caramel focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+}
