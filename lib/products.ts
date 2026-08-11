@@ -90,6 +90,18 @@ function normalizeProduct(product: Product): Product {
   };
 }
 
+function mergeProducts(remoteProducts: Product[]): Product[] {
+  const merged = [...remoteProducts];
+
+  fallbackProducts.forEach((fallbackProduct) => {
+    if (!merged.some((product) => product.id === fallbackProduct.id)) {
+      merged.push(fallbackProduct);
+    }
+  });
+
+  return merged;
+}
+
 export async function getProducts() {
   const supabase = await getServerSupabase();
 
@@ -107,7 +119,8 @@ export async function getProducts() {
     return fallbackProducts;
   }
 
-  return data.map((product) => normalizeProduct(product as Product));
+  const remoteProducts = data.map((product) => normalizeProduct(product as Product));
+  return mergeProducts(remoteProducts).filter((product) => product.available);
 }
 
 export async function getAdminProducts() {
@@ -126,7 +139,8 @@ export async function getAdminProducts() {
     return fallbackProducts;
   }
 
-  return data.map((product) => normalizeProduct(product as Product));
+  const remoteProducts = data.map((product) => normalizeProduct(product as Product));
+  return mergeProducts(remoteProducts);
 }
 
 export async function getProduct(id: string) {
