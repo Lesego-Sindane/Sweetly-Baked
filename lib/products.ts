@@ -91,15 +91,34 @@ function normalizeProduct(product: Product): Product {
 }
 
 function mergeProducts(remoteProducts: Product[]): Product[] {
-  const merged = [...remoteProducts];
+  const mergedById = new Map<string, Product>();
 
   fallbackProducts.forEach((fallbackProduct) => {
-    if (!merged.some((product) => product.id === fallbackProduct.id)) {
-      merged.push(fallbackProduct);
+    mergedById.set(fallbackProduct.id, { ...fallbackProduct });
+  });
+
+  remoteProducts.forEach((product) => {
+    const fallbackProduct = mergedById.get(product.id);
+
+    if (fallbackProduct) {
+      mergedById.set(product.id, {
+        ...product,
+        ...fallbackProduct,
+        image: fallbackProduct.image || product.image,
+        category: fallbackProduct.category || product.category,
+        name: fallbackProduct.name || product.name,
+        description: fallbackProduct.description || product.description,
+        longDescription: fallbackProduct.longDescription || product.longDescription || product.description,
+        ingredients: fallbackProduct.ingredients?.length ? fallbackProduct.ingredients : product.ingredients ?? [],
+        price: Number(fallbackProduct.price ?? product.price),
+        available: fallbackProduct.available ?? product.available
+      });
+    } else {
+      mergedById.set(product.id, product);
     }
   });
 
-  return merged;
+  return Array.from(mergedById.values());
 }
 
 export async function getProducts() {
