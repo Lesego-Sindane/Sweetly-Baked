@@ -43,7 +43,7 @@ export const fallbackProducts: Product[] = [
     ingredients: ["Flour", "Sugar", "Butter", "Eggs", "Vanilla"],
     price: 25,
     category: "Traditional",
-    image: "/images/dikuku.png",
+    image: "/images/scones%201.jpeg",
     available: true
   },
   {
