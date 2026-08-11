@@ -47,6 +47,17 @@ export const fallbackProducts: Product[] = [
     available: true
   },
   {
+    id: "amagwinya",
+    name: "Amagwinya",
+    description: "Soft, golden fatcakes with a warm, fluffy crumb.",
+    longDescription: "Traditional South African-style fatcakes, fried to a golden finish and served warm for a comforting treat with tea or coffee.",
+    ingredients: ["Flour", "Yeast", "Sugar", "Salt", "Water", "Oil"],
+    price: 20,
+    category: "Amagwinya",
+    image: "/images/fatcake%201.jpeg",
+    available: true
+  },
+  {
     id: "cakes",
     name: "Cakes",
     description: "Moist layered cakes made for celebrations and quiet luxuries.",
