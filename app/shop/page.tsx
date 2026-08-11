@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { MotionSection } from "@/components/motion-section";
 import { ProductGrid } from "@/components/product-grid";
-import { products } from "@/lib/products";
+import { getProducts } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Shop",
   description: "Shop premium homemade bakery treats from SweetlyBaked."
 };
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const products = await getProducts();
+
   return (
     <MotionSection className="container-padded py-14">
       <div className="mb-9 max-w-2xl">

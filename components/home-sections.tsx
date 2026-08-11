@@ -4,9 +4,11 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MotionSection } from "@/components/motion-section";
 import { ProductCard } from "@/components/product-card";
-import { products } from "@/lib/products";
+import { getProducts } from "@/lib/products";
 
-export function FeaturedProducts() {
+export async function FeaturedProducts() {
+  const products = await getProducts();
+
   return (
     <MotionSection className="container-padded py-16">
       <div className="mx-auto max-w-2xl text-center">
@@ -14,7 +16,7 @@ export function FeaturedProducts() {
         <p className="mt-3 text-chocolate/70">Something sweet for every craving.</p>
       </div>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
+        {products.slice(0, 6).map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

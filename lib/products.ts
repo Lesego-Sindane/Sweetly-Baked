@@ -1,6 +1,7 @@
 import type { Product } from "@/types";
+import { getServerSupabase } from "@/lib/supabase/server";
 
-export const products: Product[] = [
+export const fallbackProducts: Product[] = [
   {
     id: "cinnamon-rolls",
     name: "Cinnamon Rolls",
@@ -69,12 +70,75 @@ export const products: Product[] = [
   }
 ];
 
-export const categories = ["All", ...Array.from(new Set(products.map((product) => product.category)))];
-
-export function getProduct(id: string) {
-  return products.find((product) => product.id === id);
+function normalizeProduct(product: Product): Product {
+  return {
+    ...product,
+    price: Number(product.price),
+    longDescription: product.longDescription || product.description,
+    ingredients: product.ingredients ?? []
+  };
 }
 
-export function getRelatedProducts(product: Product) {
+export async function getProducts() {
+  const supabase = await getServerSupabase();
+
+  if (!supabase) {
+    return fallbackProducts;
+  }
+
+  const { data, error } = await supabase
+    .from("products")
+    .select("id,name,description,longDescription:long_description,ingredients,price,category,image,available,created_at")
+    .eq("available", true)
+    .order("created_at", { ascending: true });
+
+  if (error || !data?.length) {
+    return fallbackProducts;
+  }
+
+  return data.map((product) => normalizeProduct(product as Product));
+}
+
+export async function getAdminProducts() {
+  const supabase = await getServerSupabase();
+
+  if (!supabase) {
+    return fallbackProducts;
+  }
+
+  const { data, error } = await supabase
+    .from("products")
+    .select("id,name,description,longDescription:long_description,ingredients,price,category,image,available,created_at")
+    .order("created_at", { ascending: true });
+
+  if (error || !data?.length) {
+    return fallbackProducts;
+  }
+
+  return data.map((product) => normalizeProduct(product as Product));
+}
+
+export async function getProduct(id: string) {
+  const supabase = await getServerSupabase();
+
+  if (!supabase) {
+    return fallbackProducts.find((product) => product.id === id);
+  }
+
+  const { data, error } = await supabase
+    .from("products")
+    .select("id,name,description,longDescription:long_description,ingredients,price,category,image,available,created_at")
+    .eq("id", id)
+    .eq("available", true)
+    .maybeSingle();
+
+  if (error || !data) {
+    return fallbackProducts.find((product) => product.id === id);
+  }
+
+  return normalizeProduct(data as Product);
+}
+
+export function getRelatedProducts(product: Product, products: Product[]) {
   return products.filter((item) => item.id !== product.id).slice(0, 3);
 }

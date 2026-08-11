@@ -5,17 +5,19 @@ import { ProductCard } from "@/components/product-card";
 import { ProductDetailActions } from "@/components/product-detail-actions";
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/utils";
-import { getProduct, getRelatedProducts, products } from "@/lib/products";
+import { fallbackProducts, getProduct, getProducts, getRelatedProducts } from "@/lib/products";
 
 export function generateStaticParams() {
-  return products.map((product) => ({ id: product.id }));
+  return fallbackProducts.map((product) => ({ id: product.id }));
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const product = getProduct(id);
+  const product = await getProduct(id);
 
   if (!product) notFound();
+
+  const products = await getProducts();
 
   return (
     <div className="container-padded py-14">
@@ -52,7 +54,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       <section className="mt-16">
         <h2 className="font-display text-3xl font-bold">Related products</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {getRelatedProducts(product).map((item) => (
+          {getRelatedProducts(product, products).map((item) => (
             <ProductCard key={item.id} product={item} />
           ))}
         </div>

@@ -5,9 +5,10 @@ import { Package, Plus, ShoppingBag, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { products } from "@/lib/products";
+import { getAdminProducts } from "@/lib/products";
 import { getServerSupabase } from "@/lib/supabase/server";
 import { formatPrice } from "@/lib/utils";
+import type { Product } from "@/types";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
@@ -16,6 +17,9 @@ export const metadata: Metadata = {
 
 export default async function AdminDashboardPage() {
   const supabase = await getServerSupabase();
+  let products: Product[] = [];
+  let orders: { id: string; customer_name: string; delivery_method: string; status: string; created_at: string; order_items: { quantity: number; products: { name: string } | null }[] }[] = [];
+
   if (supabase) {
     const { data } = await supabase.auth.getUser();
     if (!data.user) {
@@ -25,10 +29,29 @@ export default async function AdminDashboardPage() {
     if (!admin) {
       redirect("/admin");
     }
+
+    const [{ data: productRows }, { data: orderRows }] = await Promise.all([
+      supabase
+        .from("products")
+        .select("id,name,description,longDescription:long_description,ingredients,price,category,image,available,created_at")
+        .order("created_at", { ascending: true }),
+      supabase
+        .from("orders")
+        .select("id,customer_name,delivery_method,status,created_at,order_items(quantity,products(name))")
+        .order("created_at", { ascending: false })
+        .limit(10)
+    ]);
+
+    products = (productRows as Product[] | null)?.map((product) => ({ ...product, price: Number(product.price), longDescription: product.longDescription || product.description, ingredients: product.ingredients ?? [] })) ?? [];
+    orders = (orderRows as typeof orders | null) ?? [];
+  }
+
+  if (!products.length) {
+    products = await getAdminProducts();
   }
 
   const stats = [
-    { label: "Open Orders", value: "12", icon: ShoppingBag },
+    { label: "Open Orders", value: orders.filter((order) => order.status !== "complete").length.toString(), icon: ShoppingBag },
     { label: "Products", value: products.length.toString(), icon: Package },
     { label: "Available", value: products.filter((product) => product.available).length.toString(), icon: Plus }
   ];
@@ -107,12 +130,21 @@ export default async function AdminDashboardPage() {
       <div className="mt-8 rounded-lg border bg-warm p-5 shadow-soft">
         <h2 className="font-display text-3xl font-bold">Orders</h2>
         <div className="mt-5 grid gap-3">
-          {["New cake order for Friday", "Brownie box delivery", "Cupcake collection"].map((order) => (
-            <div key={order} className="flex items-center justify-between rounded-md border bg-cream p-4">
-              <span className="font-semibold">{order}</span>
-              <Button variant="outline" size="sm">Mark Complete</Button>
+          {orders.length ? orders.map((order) => (
+            <div key={order.id} className="flex items-center justify-between gap-4 rounded-md border bg-cream p-4">
+              <div>
+                <span className="font-semibold">{order.customer_name} - {order.delivery_method}</span>
+                <p className="mt-1 text-sm text-chocolate/65">
+                  {order.order_items.map((item) => `${item.quantity} x ${item.products?.name ?? "Custom item"}`).join(", ")}
+                </p>
+              </div>
+              <span className="rounded-full bg-beige px-3 py-1 text-xs font-bold uppercase tracking-[0.12em]">{order.status}</span>
             </div>
-          ))}
+          )) : (
+            <div className="rounded-md border bg-cream p-4 text-sm font-semibold text-chocolate/70">
+              No live orders yet.
+            </div>
+          )}
         </div>
       </div>
     </section>

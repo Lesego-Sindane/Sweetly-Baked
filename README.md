@@ -36,11 +36,12 @@ values ('YOUR_AUTH_USER_ID');
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...
 ```
 
-The site uses demo products when env vars are missing, so it can preview before Supabase is configured.
+`NEXT_PUBLIC_SUPABASE_ANON_KEY` is supported for existing projects; use `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` for newer projects. The site uses demo products when env vars are missing, so it can preview before Supabase is configured.
 
 ## Vercel Deployment
 
