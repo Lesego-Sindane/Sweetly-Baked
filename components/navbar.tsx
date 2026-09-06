@@ -23,13 +23,13 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b bg-warm/92 backdrop-blur-xl">
       <nav className="container-padded flex h-20 items-center justify-between gap-4">
         <Link href="/" className="focus-ring rounded-sm" aria-label="Crispy Crumbs home">
-          <div className="flex items-center gap-3">
-            <div className="relative h-12 w-12 overflow-hidden rounded-full bg-white/60 ring-1 ring-chocolate/10">
-              <Image src="/images/Crispy crumbs logo.png" alt="Crispy Crumbs logo" fill className="object-contain p-1" />
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="relative h-12 w-12 shrink-0 sm:h-14 sm:w-14">
+              <Image src="/images/crispy crumbs logo bg removed.png" alt="Crispy Crumbs logo" fill className="object-contain" />
             </div>
-            <div>
-              <span className="block font-display text-2xl font-bold leading-none text-chocolate sm:text-3xl">Crispy Crumbs</span>
-              <span className="mt-1 block text-[0.62rem] font-bold uppercase tracking-[0.18em] text-caramel">Home Confectionery</span>
+            <div className="leading-none">
+              <span className="block font-display text-xl font-bold text-chocolate sm:text-2xl">Crispy Crumbs</span>
+              <span className="mt-1 block text-[0.58rem] font-bold uppercase tracking-[0.18em] text-caramel">Home Confectionery</span>
             </div>
           </div>
         </Link>
@@ -56,11 +56,11 @@ export function Navbar() {
       <div className={cn("fixed inset-0 z-50 bg-chocolate/35 backdrop-blur-sm transition-opacity md:hidden", open ? "opacity-100" : "pointer-events-none opacity-0")}>
         <div className={cn("ml-auto h-full w-80 max-w-[85vw] bg-cream p-6 shadow-lift transition-transform", open ? "translate-x-0" : "translate-x-full")}>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="relative h-10 w-10 overflow-hidden rounded-full bg-white/60 ring-1 ring-chocolate/10">
-                <Image src="/images/Crispy crumbs logo.png" alt="Crispy Crumbs logo" fill className="object-contain p-1" />
+            <div className="flex items-center gap-2.5">
+              <div className="relative h-10 w-10 shrink-0">
+                <Image src="/images/crispy crumbs logo bg removed.png" alt="Crispy Crumbs logo" fill className="object-contain" />
               </div>
-              <span className="font-display text-2xl font-bold">Crispy Crumbs</span>
+              <span className="font-display text-2xl font-bold leading-none">Crispy Crumbs</span>
             </div>
             <Button variant="ghost" size="sm" aria-label="Close menu" onClick={() => setOpen(false)}>
               <X className="h-5 w-5" />
