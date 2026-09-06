@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Instagram, Mail, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Mail, Music2 } from "lucide-react";
 
 export function Footer() {
   return (
@@ -21,10 +21,18 @@ export function Footer() {
         <div>
           <h3 className="font-semibold">Contact</h3>
           <div className="mt-4 grid gap-3 text-sm text-cream/75">
-            <span className="flex items-center gap-2"><MessageCircle className="h-4 w-4" /> WhatsApp</span>
-            <span className="flex items-center gap-2"><Mail className="h-4 w-4" /> hello@crispycrumbs.co.za</span>
-            <span className="flex items-center gap-2"><Instagram className="h-4 w-4" /> Instagram</span>
-            <span className="flex items-center gap-2"><Facebook className="h-4 w-4" /> Facebook</span>
+            <a href="mailto:Hellocrispycrumbs@gmail.com" className="flex items-center gap-2 transition-opacity hover:text-white">
+              <Mail className="h-4 w-4" /> Hellocrispycrumbs@gmail.com
+            </a>
+            <a href="https://www.facebook.com/share/1ErG1Qt4Dg/?mibextid=wwXIfr" target="_blank" rel="noreferrer" className="flex items-center gap-2 transition-opacity hover:text-white">
+              <Facebook className="h-4 w-4" /> Facebook
+            </a>
+            <a href="https://www.instagram.com/crispycrumbs_za?stkn=OHpmcjRmMmF5bWhq&utm_source=qr" target="_blank" rel="noreferrer" className="flex items-center gap-2 transition-opacity hover:text-white">
+              <Instagram className="h-4 w-4" /> Instagram
+            </a>
+            <a href="https://www.tiktok.com/@crispycrumbs_za?_r=1&_t=ZS-99Vx5CETi4o" target="_blank" rel="noreferrer" className="flex items-center gap-2 transition-opacity hover:text-white">
+              <Music2 className="h-4 w-4" /> TikTok
+            </a>
           </div>
         </div>
         <div>

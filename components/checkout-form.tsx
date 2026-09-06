@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +10,7 @@ import { formatPrice } from "@/lib/utils";
 import { createOrder } from "@/services/orders";
 
 export function CheckoutForm() {
+  const router = useRouter();
   const { items, subtotal, clearCart } = useCart();
   const [message, setMessage] = useState("");
   const [isPending, startTransition] = useTransition();
@@ -25,7 +27,10 @@ export function CheckoutForm() {
         items: items.map((item) => ({ product_id: item.id, quantity: item.quantity, price: item.price }))
       });
       setMessage(result.message);
-      if (result.ok) clearCart();
+      if (result.ok) {
+        clearCart();
+        router.push("/thankyou");
+      }
     });
   }
 
