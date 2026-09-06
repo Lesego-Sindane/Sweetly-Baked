@@ -4,7 +4,7 @@ import { MotionSection } from "@/components/motion-section";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact SweetlyBaked for bakery orders and custom treats."
+  description: "Contact Crispy Crumbs for bakery orders and custom treats."
 };
 
 export default function ContactPage() {

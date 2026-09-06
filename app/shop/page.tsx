@@ -5,7 +5,7 @@ import { getProducts } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description: "Shop premium homemade bakery treats from SweetlyBaked."
+  description: "Shop premium homemade bakery treats from Crispy Crumbs."
 };
 
 export default async function ShopPage() {

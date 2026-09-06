@@ -37,7 +37,7 @@ export function AdminLogin() {
         <LockKeyhole className="h-5 w-5" />
       </div>
       <h1 className="mt-5 font-display text-4xl font-bold">Admin Login</h1>
-      <p className="mt-2 text-sm leading-6 text-chocolate/65">Email login for SweetlyBaked administrators.</p>
+      <p className="mt-2 text-sm leading-6 text-chocolate/65">Email login for Crispy Crumbs administrators.</p>
       <div className="mt-6 grid gap-4">
         <Input name="email" type="email" required placeholder="Admin email" aria-label="Admin email" />
         <Input name="password" type="password" required placeholder="Password" aria-label="Password" />

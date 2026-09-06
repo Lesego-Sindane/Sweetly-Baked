@@ -1,4 +1,4 @@
-# SweetlyBaked
+# Crispy Crumbs
 
 Premium ecommerce bakery website built with Next.js 15, React 19, TypeScript, Tailwind CSS, shadcn-style components, Framer Motion, Lucide React, and Supabase.
 

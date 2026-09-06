@@ -3,7 +3,7 @@ import { CheckoutForm } from "@/components/checkout-form";
 
 export const metadata: Metadata = {
   title: "Checkout",
-  description: "Place a SweetlyBaked order for collection or delivery."
+  description: "Place a Crispy Crumbs order for collection or delivery."
 };
 
 export default function CheckoutPage() {

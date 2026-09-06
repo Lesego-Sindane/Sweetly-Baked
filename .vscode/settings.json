@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /d \"c:\\\\Users\\\\cash\\\\Downloads\\\\Sweetly Baked\" ; cmd /C \"npm run lint\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

@@ -12,7 +12,7 @@ import type { Product } from "@/types";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
-  description: "Manage SweetlyBaked products and orders."
+  description: "Manage Crispy Crumbs products and orders."
 };
 
 export default async function AdminDashboardPage() {

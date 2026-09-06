@@ -34,12 +34,12 @@ export function AboutPreview() {
     <MotionSection className="bg-warm py-16">
       <div className="container-padded grid items-center gap-10 lg:grid-cols-2">
         <div className="overflow-hidden rounded-lg shadow-soft">
-          <Image src="/images/cakes.png" alt="Layered SweetlyBaked cake" width={1200} height={900} className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-105" />
+          <Image src="/images/cakes.png" alt="Layered Crispy Crumbs cake" width={1200} height={900} className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-105" />
         </div>
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.22em] text-caramel">Our Story</p>
           <h2 className="mt-3 font-display text-4xl font-bold text-chocolate">Our passion is creating baked goods that bring people together.</h2>
-          <p className="mt-5 leading-8 text-chocolate/75">SweetlyBaked blends careful technique with the comfort of homemade baking. Every batch is prepared with quality ingredients, slow attention, and a little ceremony.</p>
+          <p className="mt-5 leading-8 text-chocolate/75">Crispy Crumbs blends careful technique with the comfort of homemade baking. Every batch is prepared with quality ingredients, slow attention, and a little ceremony.</p>
           <div className="mt-6 grid gap-3 text-sm font-semibold text-chocolate/80">
             {["Small-batch freshness", "Custom celebration orders", "Collection and local delivery"].map((item) => (
               <span key={item} className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-caramel" /> {item}</span>
@@ -67,7 +67,7 @@ export function Testimonials() {
         {quotes.map((quote) => (
           <article key={quote} className="rounded-lg border bg-warm p-6 shadow-soft">
             <p className="font-display text-2xl leading-9 text-chocolate">"{quote}"</p>
-            <p className="mt-5 text-sm font-bold uppercase tracking-[0.18em] text-caramel">SweetlyBaked Customer</p>
+            <p className="mt-5 text-sm font-bold uppercase tracking-[0.18em] text-caramel">Crispy Crumbs Customer</p>
           </article>
         ))}
       </div>

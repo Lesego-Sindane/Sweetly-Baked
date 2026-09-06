@@ -3,7 +3,7 @@ import { AdminLogin } from "@/components/admin-login";
 
 export const metadata: Metadata = {
   title: "Admin Login",
-  description: "SweetlyBaked admin login."
+  description: "Crispy Crumbs admin login."
 };
 
 export default function AdminPage() {

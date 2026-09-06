@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getProducts } from "@/lib/products";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetlybaked.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://crispycrumbs.co.za";
   const products = await getProducts();
   const routes = ["", "/shop", "/about", "/contact", "/cart", "/checkout"].map((route) => ({
     url: `${baseUrl}${route}`,
