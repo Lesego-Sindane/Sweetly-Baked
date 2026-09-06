@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   },
   description: "Luxury homemade bakery treats including cinnamon rolls, brownies, cookies, Dikuku, cakes, and cupcakes from Crispy Crumbs.",
   keywords: ["bakery", "homemade treats", "cinnamon rolls", "brownies", "cakes", "cupcakes", "Crispy Crumbs"],
+  icons: {
+    icon: "/images/crispy crumbs logo bg removed.png"
+  },
   openGraph: {
     title: "Crispy Crumbs",
     description: "Made with love. Baked for you.",
