@@ -29,7 +29,7 @@ export function CheckoutForm() {
       setMessage(result.message);
       if (result.ok) {
         clearCart();
-        router.push("/thankyou");
+        router.push("/shop/thankyou");
       }
     });
   }
