@@ -35,7 +35,7 @@ export function Navbar() {
       <nav className="container-padded flex h-20 items-center justify-between gap-2 sm:gap-4">
         <Link href="/" className="focus-ring rounded-sm" aria-label="Crispy Crumbs home">
           <div className="flex items-center gap-2 sm:gap-3">
-            <div className="relative h-16 w-16 shrink-0 sm:h-[4.5rem] sm:w-[4.5rem]">
+            <div className="relative -my-1 h-[4.5rem] w-[4.5rem] shrink-0 sm:h-20 sm:w-20">
               <Image src="/images/crispy crumbs logo bg removed.png" alt="Crispy Crumbs logo" fill className="object-contain" />
             </div>
             <div className="pt-1 leading-none">
@@ -83,7 +83,7 @@ export function Navbar() {
         <div className={cn("ml-auto h-full w-80 max-w-[85vw] border-l border-chocolate/10 bg-[#fff8f2] p-6 shadow-lift transition-transform", open ? "translate-x-0" : "translate-x-full")}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="relative h-12 w-12 shrink-0">
+              <div className="relative -my-1 h-16 w-16 shrink-0">
                 <Image src="/images/crispy crumbs logo bg removed.png" alt="Crispy Crumbs logo" fill className="object-contain" />
               </div>
               <span className="font-display text-2xl font-bold leading-none">Crispy Crumbs</span>
