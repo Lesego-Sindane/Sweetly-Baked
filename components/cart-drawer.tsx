@@ -19,7 +19,7 @@ export function CartDrawer() {
   }, []);
   const drawer = (
     <div className={cn("fixed inset-0 z-[80] bg-chocolate/35 backdrop-blur-sm transition-opacity", open ? "opacity-100" : "pointer-events-none opacity-0")}>
-      <aside className={cn("ml-auto h-full w-[24rem] max-w-[90vw] overflow-y-auto bg-cream p-6 shadow-lift transition-transform", open ? "translate-x-0" : "translate-x-full")}>
+      <aside className={cn("ml-auto h-full w-full max-w-[24rem] overflow-y-auto overscroll-contain bg-cream p-4 shadow-lift transition-transform sm:p-6", open ? "translate-x-0" : "translate-x-full")}>
         <div className="flex items-center justify-between">
           <h2 className="font-display text-3xl font-bold">Cart</h2>
           <Button variant="ghost" size="sm" aria-label="Close cart" onClick={() => setOpen(false)}><X className="h-5 w-5" /></Button>

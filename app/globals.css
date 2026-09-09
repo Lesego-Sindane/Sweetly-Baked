@@ -26,9 +26,12 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
+  min-width: 0;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(185, 122, 87, 0.12), transparent 30rem),
     #fff8f2;
