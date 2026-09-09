@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ProductCard } from "@/components/product-card";
@@ -11,6 +11,10 @@ export function ProductGrid({ products }: { products: Product[] }) {
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("featured");
   const categories = useMemo(() => ["All", ...Array.from(new Set(products.map((product) => product.category)))], [products]);
+
+  useEffect(() => {
+    setQuery(new URLSearchParams(window.location.search).get("search") ?? "");
+  }, []);
 
   const filtered = useMemo(() => {
     const next = products

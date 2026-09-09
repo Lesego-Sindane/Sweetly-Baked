@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, Search, X } from "lucide-react";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import { CartDrawer } from "@/components/cart-drawer";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -17,7 +18,17 @@ const links = [
 ];
 
 export function Navbar() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [search, setSearch] = useState("");
+
+  function submitSearch(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const query = search.trim();
+    router.push(query ? `/shop?search=${encodeURIComponent(query)}` : "/shop");
+    setSearchOpen(false);
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b bg-warm/92 backdrop-blur-xl">
@@ -42,7 +53,23 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="sm" aria-label="Search">
+          {searchOpen ? (
+            <form onSubmit={submitSearch} className="absolute left-4 right-4 top-[4.75rem] z-10 flex gap-2 rounded-md border bg-cream p-2 shadow-lift sm:static sm:flex sm:w-64 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
+              <label className="sr-only" htmlFor="site-search">Search treats</label>
+              <input
+                id="site-search"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder="Search treats"
+                autoFocus
+                className="focus-ring h-10 min-w-0 flex-1 rounded-md border bg-warm px-3 text-sm"
+              />
+              <Button type="submit" size="sm" aria-label="Submit search">
+                <Search className="h-4 w-4" />
+              </Button>
+            </form>
+          ) : null}
+          <Button variant="ghost" size="sm" aria-label="Search" onClick={() => setSearchOpen(true)}>
             <Search className="h-5 w-5" />
           </Button>
           <CartDrawer />
