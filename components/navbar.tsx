@@ -79,8 +79,8 @@ export function Navbar() {
         </div>
       </nav>
 
-      <div className={cn("fixed inset-0 z-50 bg-chocolate/35 backdrop-blur-sm transition-opacity md:hidden", open ? "opacity-100" : "pointer-events-none opacity-0")}>
-        <div className={cn("ml-auto h-full w-80 max-w-[85vw] bg-cream p-6 shadow-lift transition-transform", open ? "translate-x-0" : "translate-x-full")}>
+      <div className={cn("fixed inset-0 z-50 bg-chocolate/45 backdrop-blur-sm transition-opacity md:hidden", open ? "opacity-100" : "pointer-events-none opacity-0")}>
+        <div className={cn("ml-auto h-full w-80 max-w-[85vw] border-l border-chocolate/10 bg-[#fff8f2] p-6 shadow-lift transition-transform", open ? "translate-x-0" : "translate-x-full")}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="relative h-12 w-12 shrink-0">
@@ -92,9 +92,9 @@ export function Navbar() {
               <X className="h-5 w-5" />
             </Button>
           </div>
-          <div className="mt-8 grid gap-4">
+          <div className="mt-8 grid gap-3">
             {links.map((link) => (
-              <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="rounded-md px-2 py-3 text-lg font-semibold hover:bg-beige">
+              <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="rounded-md border border-chocolate/10 bg-white/75 px-4 py-3 text-lg font-semibold text-chocolate shadow-sm transition-colors hover:bg-beige">
                 {link.label}
               </Link>
             ))}
