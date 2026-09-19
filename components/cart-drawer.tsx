@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/cart-context";
 import { cn, formatPrice } from "@/lib/utils";
+import { getWhatsAppCheckoutUrl } from "@/lib/whatsapp";
 
 export function CartDrawer() {
   const [open, setOpen] = useState(false);
@@ -40,7 +41,7 @@ export function CartDrawer() {
         <div className="mt-6 border-t pt-5">
           <div className="flex justify-between font-bold"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div>
           <Button asChild className="mt-5 w-full" onClick={() => setOpen(false)}>
-            <Link href="/checkout">Checkout</Link>
+            <a href={getWhatsAppCheckoutUrl(items)} target="_blank" rel="noreferrer">Checkout on WhatsApp</a>
           </Button>
           <Button asChild variant="outline" className="mt-3 w-full" onClick={() => setOpen(false)}>
             <Link href="/cart">View Cart</Link>

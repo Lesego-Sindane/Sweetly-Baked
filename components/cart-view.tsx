@@ -6,6 +6,7 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/cart-context";
 import { formatPrice } from "@/lib/utils";
+import { getWhatsAppCheckoutUrl } from "@/lib/whatsapp";
 
 export function CartView() {
   const { items, subtotal, updateQuantity, removeItem } = useCart();
@@ -48,7 +49,7 @@ export function CartView() {
             </div>
             <p className="mt-3 text-sm leading-6 text-chocolate/65">Delivery is confirmed after your order is reviewed.</p>
             <Button asChild className="mt-6 w-full">
-              <Link href="/checkout">Checkout</Link>
+              <a href={getWhatsAppCheckoutUrl(items)} target="_blank" rel="noreferrer">Checkout on WhatsApp</a>
             </Button>
           </aside>
         </div>
