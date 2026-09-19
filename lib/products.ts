@@ -1,6 +1,11 @@
 import type { Product } from "@/types";
 import { getServerSupabase } from "@/lib/supabase/server";
 
+const normalizeProductCategory = (productName: string, category?: string) => {
+  const value = `${productName} ${category ?? ""}`.toLowerCase();
+  return value.includes("apron") ? "Aprons" : "Baked Goods";
+};
+
 export const fallbackProducts: Product[] = [
   {
     id: "cinnamon-rolls",
@@ -9,7 +14,7 @@ export const fallbackProducts: Product[] = [
     longDescription: "Hand-rolled dough layered with cinnamon sugar, baked until pillowy, then finished with a glossy caramel glaze and vanilla icing.",
     ingredients: ["Flour", "Butter", "Cinnamon", "Brown sugar", "Vanilla icing"],
     price: 40,
-    category: "Pastries",
+    category: "Baked Goods",
     image: "/images/cinnamon-rolls.png",
     available: true
   },
@@ -20,7 +25,7 @@ export const fallbackProducts: Product[] = [
     longDescription: "Deep chocolate brownies baked dense and fudgy with a delicate crackled top, generous chocolate chunks, and a clean cocoa finish.",
     ingredients: ["Dark chocolate", "Cocoa", "Butter", "Eggs", "Flour"],
     price: 35,
-    category: "Chocolate",
+    category: "Baked Goods",
     image: "/images/brownies.png",
     available: true
   },
@@ -31,7 +36,7 @@ export const fallbackProducts: Product[] = [
     longDescription: "Golden chocolate chip cookies with crisp edges, chewy centers, and balanced sweetness for everyday gifting or late-night cravings.",
     ingredients: ["Flour", "Butter", "Chocolate chips", "Brown sugar", "Vanilla"],
     price: 20,
-    category: "Cookies",
+    category: "Baked Goods",
     image: "/images/cookies.png",
     available: true
   },
@@ -42,19 +47,8 @@ export const fallbackProducts: Product[] = [
     longDescription: "A nostalgic tray of small golden Dikuku, baked with a rustic crumb and satisfying crunch for sharing with tea or coffee.",
     ingredients: ["Flour", "Sugar", "Butter", "Eggs", "Vanilla"],
     price: 25,
-    category: "Traditional",
+    category: "Baked Goods",
     image: "/images/scones%201.jpeg",
-    available: true
-  },
-  {
-    id: "amagwinya",
-    name: "Amagwinya",
-    description: "Soft, golden fatcakes with a warm, fluffy crumb.",
-    longDescription: "Traditional South African-style fatcakes, fried to a golden finish and served warm for a comforting treat with tea or coffee.",
-    ingredients: ["Flour", "Yeast", "Sugar", "Salt", "Water", "Oil"],
-    price: 20,
-    category: "Amagwinya",
-    image: "/images/fatcake%201.jpeg",
     available: true
   },
   {
@@ -64,7 +58,7 @@ export const fallbackProducts: Product[] = [
     longDescription: "Premium celebration cakes with soft layers, silky frosting, caramel accents, and chocolate shavings. Custom notes can be added at checkout.",
     ingredients: ["Cake flour", "Butter", "Cream", "Chocolate", "Caramel"],
     price: 300,
-    category: "Celebration",
+    category: "Baked Goods",
     image: "/images/cakes.png",
     available: true
   },
@@ -75,8 +69,41 @@ export const fallbackProducts: Product[] = [
     longDescription: "Tender vanilla cupcakes in chocolate wrappers, piped with cream frosting and finished with caramel drizzle for a refined bakery box.",
     ingredients: ["Flour", "Butter", "Eggs", "Vanilla", "Cream frosting"],
     price: 25,
-    category: "Celebration",
+    category: "Baked Goods",
     image: "/images/cupcakes.png",
+    available: true
+  },
+  {
+    id: "muffins",
+    name: "Muffins",
+    description: "Tender, bakery-fresh muffins with comforting sweetness and a golden crumb.",
+    longDescription: "Soft, fluffy muffins baked with a tender crumb and just enough sweetness for a dreamy morning treat or an easy afternoon bite.",
+    ingredients: ["Flour", "Butter", "Eggs", "Sugar", "Vanilla"],
+    price: 22,
+    category: "Baked Goods",
+    image: "/images/hero-bakery.png",
+    available: true
+  },
+  {
+    id: "simple-aprons",
+    name: "Simple Aprons",
+    description: "A classic kitchen apron in soft, practical linen-inspired cotton.",
+    longDescription: "A refined everyday apron designed for baking, cooking and all the little kitchen rituals in between. Easy to wear, beautifully made, and designed with the same thoughtful care as our bakes.",
+    ingredients: ["Cotton blend", "Linen feel", "Soft straps", "Utility pockets"],
+    price: 120,
+    category: "Aprons",
+    image: "/images/hero-bakery.png",
+    available: true
+  },
+  {
+    id: "new-age-aprons",
+    name: "New Age aprons",
+    description: "A modern apron with a timeless feel for cooks who love beautiful tools.",
+    longDescription: "Our New Age apron brings a little more style to the everyday kitchen — thoughtful lines, wrap-ready comfort, and a polished finish that feels as good as it looks.",
+    ingredients: ["Cotton blend", "Linen texture", "Adjustable fit", "Functional pockets"],
+    price: 140,
+    category: "Aprons",
+    image: "/images/hero-bakery.png",
     available: true
   }
 ];
@@ -84,6 +111,7 @@ export const fallbackProducts: Product[] = [
 function normalizeProduct(product: Product): Product {
   return {
     ...product,
+    category: normalizeProductCategory(product.name, product.category),
     price: Number(product.price),
     longDescription: product.longDescription || product.description,
     ingredients: product.ingredients ?? []

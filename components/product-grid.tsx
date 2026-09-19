@@ -10,21 +10,49 @@ export function ProductGrid({ products }: { products: Product[] }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
   const [sort, setSort] = useState("featured");
-  const categories = useMemo(() => ["All", ...Array.from(new Set(products.map((product) => product.category)))], [products]);
+
+  const normalizedProducts = useMemo(
+    () =>
+      products.map((product) => ({
+        ...product,
+        category: /apron/i.test(product.name) || product.category === "Aprons" ? "Aprons" : "Baked Goods"
+      })),
+    [products]
+  );
+
+  const categories = useMemo(() => ["All", "Baked Goods", "Aprons"], []);
 
   useEffect(() => {
-    setQuery(new URLSearchParams(window.location.search).get("search") ?? "");
+    const params = new URLSearchParams(window.location.search);
+    const nextQuery = params.get("search") ?? "";
+    const nextCategory = params.get("category") ?? "";
+
+    setQuery(nextQuery);
+
+    if (nextCategory === "aprons") {
+      setCategory("Aprons");
+    } else if (nextCategory === "baked-goods" || nextCategory === "baked goods") {
+      setCategory("Baked Goods");
+    }
   }, []);
 
   const filtered = useMemo(() => {
-    const next = products
+    const next = normalizedProducts
       .filter((product) => category === "All" || product.category === category)
       .filter((product) => product.name.toLowerCase().includes(query.toLowerCase()));
 
     if (sort === "price-asc") return [...next].sort((a, b) => a.price - b.price);
     if (sort === "price-desc") return [...next].sort((a, b) => b.price - a.price);
     return next;
-  }, [category, products, query, sort]);
+  }, [category, normalizedProducts, query, sort]);
+
+  const groupedProducts = useMemo(
+    () => [
+      { title: "BAKED GOODS", items: filtered.filter((product) => product.category === "Baked Goods") },
+      { title: "APRONS", items: filtered.filter((product) => product.category === "Aprons") }
+    ],
+    [filtered]
+  );
 
   return (
     <div>
@@ -45,10 +73,25 @@ export function ProductGrid({ products }: { products: Product[] }) {
           <option value="price-desc">Price: high to low</option>
         </select>
       </div>
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+
+      <div className="mt-10 space-y-12">
+        {groupedProducts.map((group) => {
+          if (!group.items.length) return null;
+
+          return (
+            <section key={group.title}>
+              <div className="mb-5 flex items-center justify-between gap-4 border-b border-chocolate/10 pb-3">
+                <p className="text-sm font-bold uppercase tracking-[0.22em] text-caramel">{group.title}</p>
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-chocolate/45">{group.items.length} items</span>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {group.items.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </div>
     </div>
   );

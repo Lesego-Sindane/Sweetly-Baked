@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
+  { href: "/shop?category=aprons", label: "Aprons", subtle: true },
   { href: "/about", label: "About Us" },
   { href: "/checkout", label: "Order" },
   { href: "/contact", label: "Contact" }
@@ -44,9 +45,16 @@ export function Navbar() {
           </div>
         </Link>
 
-        <div className="hidden items-center gap-10 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="focus-ring rounded-sm text-sm font-semibold text-charcoal transition-colors hover:text-caramel">
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "focus-ring rounded-sm text-sm font-semibold text-charcoal transition-colors hover:text-caramel",
+                link.subtle && "text-[0.7rem] uppercase tracking-[0.2em] text-chocolate/60"
+              )}
+            >
               {link.label}
             </Link>
           ))}

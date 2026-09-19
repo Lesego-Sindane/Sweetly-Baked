@@ -16,7 +16,7 @@ export async function FeaturedProducts() {
         <p className="mt-3 text-chocolate/70">Something sweet for every craving.</p>
       </div>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {products.slice(0, 6).map((product) => (
+        {products.filter((product) => product.category !== "Aprons").slice(0, 6).map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
@@ -24,6 +24,36 @@ export async function FeaturedProducts() {
         <Button asChild>
           <Link href="/shop">View All Products <ArrowRight className="h-4 w-4" /></Link>
         </Button>
+      </div>
+    </MotionSection>
+  );
+}
+
+export async function ApronCollection() {
+  const products = await getProducts();
+  const aprons = products.filter((product) => product.category === "Aprons");
+
+  return (
+    <MotionSection className="bg-warm py-16">
+      <div className="container-padded">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-caramel">Kitchen essentials</p>
+          <h2 className="mt-3 font-display text-4xl font-bold text-chocolate sm:text-5xl">Made for the kitchen. Made for you.</h2>
+          <p className="mt-5 text-lg leading-8 text-chocolate/75">Crispy Crumbs is about more than the things that come out of the oven. Our aprons are made for the people who love creating, baking and making a little mess along the way. They are practical, beautiful and designed with the same care we put into everything we make.</p>
+          <p className="mt-4 text-sm font-medium uppercase tracking-[0.2em] text-chocolate/55">Born from a love of baking and a love of beautiful things.</p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {aprons.slice(0, 2).map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Button asChild>
+            <Link href="/shop?category=aprons">Shop Aprons <ArrowRight className="h-4 w-4" /></Link>
+          </Button>
+        </div>
       </div>
     </MotionSection>
   );
