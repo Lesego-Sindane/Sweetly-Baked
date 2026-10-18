@@ -6,53 +6,43 @@ import { Input } from "@/components/ui/input";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/types";
 
+const collectionLabels = ["All Products", "Tea Time Delicacies", "Biscuits and Dikuku", "Muffins and Scones", "Bread", "Sweet Treats", "Cakes and Cupcakes"];
+
 export function ProductGrid({ products }: { products: Product[] }) {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("All");
+  const [collection, setCollection] = useState("All Products");
   const [sort, setSort] = useState("featured");
-
-  const normalizedProducts = useMemo(
-    () =>
-      products.map((product) => ({
-        ...product,
-        category: /apron/i.test(product.name) || product.category === "Aprons" ? "Aprons" : "Baked Goods"
-      })),
-    [products]
-  );
-
-  const categories = useMemo(() => ["All", "Baked Goods", "Aprons"], []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const nextQuery = params.get("search") ?? "";
-    const nextCategory = params.get("category") ?? "";
+    const nextCollection = params.get("collection") ?? "";
 
     setQuery(nextQuery);
-
-    if (nextCategory === "aprons") {
-      setCategory("Aprons");
-    } else if (nextCategory === "baked-goods" || nextCategory === "baked goods") {
-      setCategory("Baked Goods");
+    if (nextCollection && collectionLabels.includes(nextCollection)) {
+      setCollection(nextCollection);
     }
   }, []);
 
   const filtered = useMemo(() => {
-    const next = normalizedProducts
-      .filter((product) => category === "All" || product.category === category)
-      .filter((product) => product.name.toLowerCase().includes(query.toLowerCase()));
+    const next = products.filter((product) => {
+      const matchesCollection = collection === "All Products" || product.collections.includes(collection) || product.category === collection;
+      const matchesQuery = product.name.toLowerCase().includes(query.toLowerCase()) || product.description.toLowerCase().includes(query.toLowerCase());
+      return matchesCollection && matchesQuery;
+    });
 
-    if (sort === "price-asc") return [...next].sort((a, b) => a.price - b.price);
-    if (sort === "price-desc") return [...next].sort((a, b) => b.price - a.price);
+    if (sort === "price-asc") return [...next].sort((a, b) => (a.variants.find((variant) => variant.status === "confirmed")?.price ?? Number.MAX_SAFE_INTEGER) - (b.variants.find((variant) => variant.status === "confirmed")?.price ?? Number.MAX_SAFE_INTEGER));
+    if (sort === "price-desc") return [...next].sort((a, b) => (b.variants.find((variant) => variant.status === "confirmed")?.price ?? 0) - (a.variants.find((variant) => variant.status === "confirmed")?.price ?? 0));
     return next;
-  }, [category, normalizedProducts, query, sort]);
+  }, [collection, products, query, sort]);
 
-  const groupedProducts = useMemo(
-    () => [
-      { title: "BAKED GOODS", items: filtered.filter((product) => product.category === "Baked Goods") },
-      { title: "APRONS", items: filtered.filter((product) => product.category === "Aprons") }
-    ],
-    [filtered]
-  );
+  const groups = useMemo(() => {
+    if (collection === "All Products") {
+      return [{ title: "ALL PRODUCTS", items: filtered }];
+    }
+
+    return [{ title: collection.toUpperCase(), items: filtered }].filter((group) => group.items.length > 0);
+  }, [collection, filtered]);
 
   return (
     <div>
@@ -62,9 +52,9 @@ export function ProductGrid({ products }: { products: Product[] }) {
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-chocolate/45" />
           <Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search treats" className="pl-9" />
         </label>
-        <select aria-label="Filter by category" value={category} onChange={(event) => setCategory(event.target.value)} className="focus-ring h-11 rounded-md border bg-warm px-3 text-sm">
-          {categories.map((item) => (
-            <option key={item}>{item}</option>
+        <select aria-label="Filter by collection" value={collection} onChange={(event) => setCollection(event.target.value)} className="focus-ring h-11 rounded-md border bg-warm px-3 text-sm">
+          {collectionLabels.map((item) => (
+            <option key={item} value={item}>{item}</option>
           ))}
         </select>
         <select aria-label="Sort products" value={sort} onChange={(event) => setSort(event.target.value)} className="focus-ring h-11 rounded-md border bg-warm px-3 text-sm">
@@ -75,23 +65,19 @@ export function ProductGrid({ products }: { products: Product[] }) {
       </div>
 
       <div className="mt-10 space-y-12">
-        {groupedProducts.map((group) => {
-          if (!group.items.length) return null;
-
-          return (
-            <section key={group.title}>
-              <div className="mb-5 flex items-center justify-between gap-4 border-b border-chocolate/10 pb-3">
-                <p className="text-sm font-bold uppercase tracking-[0.22em] text-caramel">{group.title}</p>
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-chocolate/45">{group.items.length} items</span>
-              </div>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {group.items.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            </section>
-          );
-        })}
+        {groups.map((group) => (
+          <section key={group.title}>
+            <div className="mb-5 flex items-center justify-between gap-4 border-b border-chocolate/10 pb-3">
+              <p className="text-sm font-bold uppercase tracking-[0.22em] text-caramel">{group.title}</p>
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-chocolate/45">{group.items.length} items</span>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {group.items.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
     </div>
   );

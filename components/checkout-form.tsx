@@ -24,7 +24,7 @@ export function CheckoutForm() {
         address: String(formData.get("address") ?? ""),
         delivery_method: String(formData.get("delivery_method") ?? "Collection") as "Collection" | "Delivery",
         notes: String(formData.get("notes") ?? ""),
-        items: items.map((item) => ({ product_id: item.id, quantity: item.quantity, price: item.price }))
+        items: items.map((item) => ({ product_id: item.productId, quantity: item.quantity, price: Number(item.unitPrice ?? item.price ?? 0) }))
       });
       setMessage(result.message);
       if (result.ok) {
@@ -61,7 +61,7 @@ export function CheckoutForm() {
           {items.map((item) => (
             <div key={item.id} className="flex justify-between gap-4">
               <span>{item.quantity} x {item.name}</span>
-              <span>{formatPrice(item.quantity * item.price)}</span>
+              <span>{formatPrice(item.quantity * Number(item.unitPrice ?? item.price ?? 0))}</span>
             </div>
           ))}
         </div>

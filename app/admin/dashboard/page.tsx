@@ -98,7 +98,7 @@ export default async function AdminDashboardPage() {
                       <span className="font-semibold">{product.name}</span>
                     </td>
                     <td>{product.category}</td>
-                    <td>{formatPrice(product.price)}</td>
+                    <td>{formatPrice(Number(product.price ?? 0))}</td>
                     <td>{product.available ? "Yes" : "No"}</td>
                     <td className="text-right">
                       <Button variant="outline" size="sm">Edit</Button>

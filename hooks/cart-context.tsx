@@ -1,13 +1,13 @@
 "use client";
 
 import { createContext, useContext, useMemo, useState } from "react";
-import type { CartItem, Product } from "@/types";
+import type { CartItem, Product, ProductVariant } from "@/types";
 
 type CartContextValue = {
   items: CartItem[];
   count: number;
   subtotal: number;
-  addItem: (product: Product, quantity?: number) => void;
+  addItem: (product: Product, quantity?: number, variant?: ProductVariant) => void;
   updateQuantity: (id: string, quantity: number) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
@@ -20,19 +20,43 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const value = useMemo<CartContextValue>(() => {
     const count = items.reduce((total, item) => total + item.quantity, 0);
-    const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+    const subtotal = items.reduce((total, item) => total + Number(item.unitPrice ?? item.price ?? 0) * item.quantity, 0);
 
     return {
       items,
       count,
       subtotal,
-      addItem(product, quantity = 1) {
+      addItem(product, quantity = 1, variant) {
+        if (!variant || !variant.available || variant.status !== "confirmed" || typeof variant.price !== "number") {
+          return;
+        }
+
+        const itemKey = `${product.id}:${variant.id}`;
+
         setItems((current) => {
-          const existing = current.find((item) => item.id === product.id);
+          const existing = current.find((item) => item.cartKey === itemKey);
           if (existing) {
-            return current.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item));
+            return current.map((item) => (item.cartKey === itemKey ? { ...item, quantity: item.quantity + quantity, unitPrice: variant.price } : item));
           }
-          return [...current, { ...product, quantity }];
+
+          return [
+            ...current,
+            {
+              ...product,
+              id: itemKey,
+              cartKey: itemKey,
+              productId: product.id,
+              quantity,
+              variantId: variant.id,
+              flavour: variant.flavour,
+              size: variant.size ?? variant.optionLabel,
+              unitPrice: variant.price,
+              priceStatus: variant.status,
+              productSlug: product.slug,
+              price: variant.price,
+              image: product.image
+            }
+          ];
         });
       },
       updateQuantity(id, quantity) {

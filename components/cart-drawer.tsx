@@ -32,7 +32,7 @@ export function CartDrawer() {
               <Image src={item.image} alt={item.name} width={96} height={96} className="aspect-square rounded-md object-cover" />
               <div>
                 <h3 className="font-semibold">{item.name}</h3>
-                <p className="mt-1 text-sm text-chocolate/65">{item.quantity} x {formatPrice(item.price)}</p>
+                <p className="mt-1 text-sm text-chocolate/65">{item.quantity} x {formatPrice(Number(item.unitPrice ?? item.price ?? 0))}</p>
                 <button className="mt-2 text-xs font-bold uppercase tracking-[0.14em] text-caramel" onClick={() => removeItem(item.id)}>Remove</button>
               </div>
             </article>

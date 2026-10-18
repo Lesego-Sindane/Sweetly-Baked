@@ -25,11 +25,12 @@ export function CartView() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_24rem]">
           <div className="grid gap-4">
             {items.map((item) => (
-              <article key={item.id} className="grid gap-4 rounded-lg border bg-warm p-4 shadow-soft sm:grid-cols-[7rem_1fr_auto]">
+              <article key={item.cartKey} className="grid gap-4 rounded-lg border bg-warm p-4 shadow-soft sm:grid-cols-[7rem_1fr_auto]">
                 <Image src={item.image} alt={item.name} width={180} height={180} className="aspect-square rounded-md object-cover" />
                 <div>
                   <h2 className="font-display text-2xl font-bold">{item.name}</h2>
-                  <p className="mt-2 text-sm text-chocolate/70">{formatPrice(item.price)}</p>
+                  <p className="mt-2 text-sm text-chocolate/70">{item.flavour ?? "Standard"} · {item.size ?? "Selected option"}</p>
+                  <p className="mt-1 text-sm font-semibold text-chocolate">{formatPrice(Number(item.unitPrice ?? item.price ?? 0))}</p>
                   <div className="mt-4 flex w-fit items-center rounded-md border">
                     <button className="focus-ring grid h-10 w-10 place-items-center" aria-label="Decrease quantity" onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus className="h-4 w-4" /></button>
                     <span className="min-w-10 text-center">{item.quantity}</span>
