@@ -1,12 +1,17 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/types";
 
-const collectionLabels = ["All Products", "Tea Time Delicacies", "Biscuits and Dikuku", "Muffins and Scones", "Bread", "Sweet Treats", "Cakes and Cupcakes"];
+const collectionLabels = ["All Products", "Tea Time Delicacies", "Biscuits", "Mix and Match", "Scones", "Muffins", "Bread", "Sweet Treats", "Cakes and Cupcakes"];
+const collectionHeroImages: Record<string, { src: string; alt: string }> = {
+  Biscuits: { src: "/images/Biscuits.jpg", alt: "Crispy Crumbs biscuits in a sharing bucket" },
+  "Mix and Match": { src: "/images/Tea Time Box open.jpg", alt: "Open Crispy Crumbs Tea Time Box" }
+};
 
 export function ProductGrid({ products }: { products: Product[] }) {
   const [query, setQuery] = useState("");
@@ -43,6 +48,7 @@ export function ProductGrid({ products }: { products: Product[] }) {
 
     return [{ title: collection.toUpperCase(), items: filtered }].filter((group) => group.items.length > 0);
   }, [collection, filtered]);
+  const collectionHero = collectionHeroImages[collection];
 
   return (
     <div>
@@ -65,6 +71,13 @@ export function ProductGrid({ products }: { products: Product[] }) {
       </div>
 
       <div className="mt-10 space-y-12">
+        {collectionHero ? (
+          <div className="relative mb-8 aspect-[16/7] overflow-hidden rounded-lg bg-beige sm:aspect-[21/7]">
+            <Image src={collectionHero.src} alt={collectionHero.alt} fill priority className="object-cover" sizes="100vw" />
+            <div className="absolute inset-0 bg-gradient-to-r from-chocolate/60 via-chocolate/15 to-transparent" />
+            <h2 className="absolute bottom-5 left-5 font-display text-3xl font-bold text-white sm:bottom-8 sm:left-8 sm:text-4xl">{collection}</h2>
+          </div>
+        ) : null}
         {groups.map((group) => (
           <section key={group.title}>
             <div className="mb-5 flex items-center justify-between gap-4 border-b border-chocolate/10 pb-3">

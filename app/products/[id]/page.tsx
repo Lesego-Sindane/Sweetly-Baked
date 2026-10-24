@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { fallbackProducts, getProduct, getProducts, getRelatedProducts } from "@/lib/products";
 
 export function generateStaticParams() {
-  return fallbackProducts.map((product) => ({ id: product.slug }));
+  return fallbackProducts.filter((product) => product.available).map((product) => ({ id: product.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {

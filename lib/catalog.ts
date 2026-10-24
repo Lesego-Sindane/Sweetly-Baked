@@ -1,59 +1,17 @@
 import type { Product } from "@/types";
 
-export const catalogue: Product[] = [
-  {
-    id: "dikuku",
-    slug: "dikuku",
-    name: "Dikuku",
-    category: "Biscuits and Dikuku",
-    collections: ["All Products", "Biscuits and Dikuku"],
-    description: "Traditional South African-style dikuku in a range of classic flavours, ready for sharing and bulk orders.",
-    longDescription:
-      "Crispy Crumbs offers dikuku in plain, raisins and coconut, custard, and lemon and blueberry flavours. Choose your bucket size for family gatherings, community events, tea time, or larger sharing occasions.",
-    image: "/images/dikuku.png",
-    images: ["/images/dikuku.png", "/images/hero-bakery.png", "/images/scones 1.jpeg"],
-    altText: "Dikuku bucket on a bakery table",
-    available: true,
-    flavours: ["Plain", "Raisins and coconut", "Custard", "Lemon and blueberry"],
-    variants: [
-      { id: "dikuku-plain-5l", flavour: "Plain", optionLabel: "5 L bucket", size: "5 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." },
-      { id: "dikuku-plain-10l", flavour: "Plain", optionLabel: "10 L bucket", size: "10 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." },
-      { id: "dikuku-plain-20l", flavour: "Plain", optionLabel: "20 L bucket", size: "20 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." },
-      { id: "dikuku-raisins-coconut-5l", flavour: "Raisins and coconut", optionLabel: "5 L bucket", size: "5 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." },
-      { id: "dikuku-raisins-coconut-10l", flavour: "Raisins and coconut", optionLabel: "10 L bucket", size: "10 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." },
-      { id: "dikuku-raisins-coconut-20l", flavour: "Raisins and coconut", optionLabel: "20 L bucket", size: "20 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." },
-      { id: "dikuku-custard-5l", flavour: "Custard", optionLabel: "5 L bucket", size: "5 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." },
-      { id: "dikuku-custard-10l", flavour: "Custard", optionLabel: "10 L bucket", size: "10 L bucket", price: 600, status: "confirmed", available: true },
-      { id: "dikuku-custard-20l", flavour: "Custard", optionLabel: "20 L bucket", size: "20 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." },
-      { id: "dikuku-lemon-blueberry-5l", flavour: "Lemon and blueberry", optionLabel: "5 L bucket", size: "5 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." },
-      { id: "dikuku-lemon-blueberry-10l", flavour: "Lemon and blueberry", optionLabel: "10 L bucket", size: "10 L bucket", price: 700, status: "confirmed", available: true },
-      { id: "dikuku-lemon-blueberry-20l", flavour: "Lemon and blueberry", optionLabel: "20 L bucket", size: "20 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Latest agreed pricing not confirmed." }
-    ],
-    seo: {
-      title: "Dikuku Buckets | Crispy Crumbs",
-      description: "Explore dikuku from Crispy Crumbs in plain, raisins and coconut, custard, and lemon and blueberry flavours. Choose your preferred bucket size.",
-      canonical: "/products/dikuku",
-      keyword: "dikuku in South Africa",
-      keywords: ["dikuku in South Africa", "traditional homemade biscuits", "dikuku buckets", "biscuits for sharing", "bulk baked goods"],
-      ogTitle: "Dikuku Buckets | Crispy Crumbs",
-      ogDescription: "Choose from plain, raisins and coconut, custard, and lemon and blueberry dikuku bucket sizes.",
-      ogImage: "/images/dikuku.png",
-      alt: "Dikuku buckets from Crispy Crumbs",
-      h1: "Dikuku Buckets",
-      h2: ["Available flavours", "Bucket sizes", "Bulk ordering information"]
-    }
-  },
+const products: Product[] = [
   {
     id: "plain-biscuits",
     slug: "plain-biscuits",
     name: "Plain Biscuits",
-    category: "Biscuits and Dikuku",
-    collections: ["All Products", "Biscuits and Dikuku"],
+    category: "Biscuits",
+    collections: ["All Products", "Biscuits"],
     description: "Classic plain biscuits in convenient bulk buckets, made for sharing and easy serving.",
     longDescription:
       "Plain biscuits are available in 5 L, 10 L, and 20 L buckets to suit smaller gatherings or larger ordering needs. These straightforward bulk options are ideal for sharing, serving, and events.",
-    image: "/images/scones 1.jpeg",
-    images: ["/images/scones 1.jpeg", "/images/dikuku.png", "/images/hero-bakery.png"],
+    image: "/images/Biscuits.jpg",
+    images: ["/images/Biscuits.jpg"],
     altText: "Plain biscuit bucket from Crispy Crumbs",
     available: true,
     flavours: ["Plain"],
@@ -70,7 +28,7 @@ export const catalogue: Product[] = [
       keywords: ["plain biscuits in bulk", "bulk biscuits South Africa", "plain biscuit buckets", "sharing biscuits"],
       ogTitle: "Plain Biscuits in Bulk Buckets | Crispy Crumbs",
       ogDescription: "Classic plain biscuits available in 5 L, 10 L and 20 L buckets.",
-      ogImage: "/images/scones 1.jpeg",
+      ogImage: "/images/Biscuits.jpg",
       alt: "Plain biscuit buckets from Crispy Crumbs",
       h1: "Plain Biscuits in Bulk Buckets",
       h2: ["Bucket sizes", "Bulk ordering", "Serving options"]
@@ -80,8 +38,8 @@ export const catalogue: Product[] = [
     id: "standard-muffins",
     slug: "muffins",
     name: "Standard Muffins",
-    category: "Muffins and Scones",
-    collections: ["All Products", "Muffins and Scones"],
+    category: "Muffins",
+    collections: ["All Products", "Muffins"],
     description: "Tender muffin buckets in vanilla, chocolate, blueberry, and lemon and poppy seed flavours.",
     longDescription:
       "Standard muffin buckets are available in a range of flavour options and bucket sizes. These are current provisional bucket prices and should be treated as pricing estimates until cost verification is complete.",
@@ -126,21 +84,26 @@ export const catalogue: Product[] = [
     id: "scones",
     slug: "scones",
     name: "Scones",
-    category: "Muffins and Scones",
-    collections: ["All Products", "Tea Time Delicacies", "Muffins and Scones"],
-    description: "Freshly baked scones, with blueberry as a popular favourite in the bakery range.",
+    category: "Scones",
+    collections: ["All Products", "Tea Time Delicacies", "Scones"],
+    description: "Scones in plain, blueberry, and custard flavours, available in 5 L, 10 L, and 20 L buckets.",
     longDescription:
-      "Scones are available in the bakery's supported bucket sizes, with blueberry scones especially well known in the Tea Time Delicacies range. These are lovingly baked for sharing, gatherings, and tea breaks.",
-    image: "/images/scones 1.jpeg",
-    images: ["/images/scones 1.jpeg", "/images/scones 2.jpeg", "/images/scones 3.jpeg"],
+      "Choose plain, blueberry, or custard scones, then select a 5 L, 10 L, or 20 L bucket. Scones are also known as dikuku in the Crispy Crumbs range.",
+    image: "/images/Blueberry Scones.jpg",
+    images: ["/images/Blueberry Scones.jpg"],
     altText: "Freshly baked blueberry scones",
     available: true,
-    flavours: ["Blueberry"],
+    flavours: ["Plain", "Blueberry", "Custard"],
     variants: [
-      { id: "scones-blueberry-2.5l", flavour: "Blueberry", optionLabel: "2.5 L bucket", size: "2.5 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Approved pricing still to be confirmed." },
-      { id: "scones-blueberry-5l", flavour: "Blueberry", optionLabel: "5 L bucket", size: "5 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Approved pricing still to be confirmed." },
-      { id: "scones-blueberry-10l", flavour: "Blueberry", optionLabel: "10 L bucket", size: "10 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Approved pricing still to be confirmed." },
-      { id: "scones-blueberry-20l", flavour: "Blueberry", optionLabel: "20 L bucket", size: "20 L bucket", price: undefined, status: "needs_confirmation", available: true, internalNotes: "20 L bucket used for product photography reference." }
+      { id: "scones-plain-5l", flavour: "Plain", optionLabel: "5 L bucket", size: "5 L bucket", price: 250, status: "confirmed", available: true },
+      { id: "scones-plain-10l", flavour: "Plain", optionLabel: "10 L bucket", size: "10 L bucket", price: 480, status: "confirmed", available: true },
+      { id: "scones-plain-20l", flavour: "Plain", optionLabel: "20 L bucket", size: "20 L bucket", price: 800, status: "confirmed", available: true },
+      { id: "scones-blueberry-5l", flavour: "Blueberry", optionLabel: "5 L bucket", size: "5 L bucket", price: 400, status: "confirmed", available: true },
+      { id: "scones-blueberry-10l", flavour: "Blueberry", optionLabel: "10 L bucket", size: "10 L bucket", price: 700, status: "confirmed", available: true },
+      { id: "scones-blueberry-20l", flavour: "Blueberry", optionLabel: "20 L bucket", size: "20 L bucket", price: 1150, status: "confirmed", available: true },
+      { id: "scones-custard-5l", flavour: "Custard", optionLabel: "5 L bucket", size: "5 L bucket", price: 380, status: "confirmed", available: true },
+      { id: "scones-custard-10l", flavour: "Custard", optionLabel: "10 L bucket", size: "10 L bucket", price: 600, status: "confirmed", available: true },
+      { id: "scones-custard-20l", flavour: "Custard", optionLabel: "20 L bucket", size: "20 L bucket", price: 1000, status: "confirmed", available: true }
     ],
     seo: {
       title: "Freshly Baked Scones in Buckets | Crispy Crumbs",
@@ -150,7 +113,7 @@ export const catalogue: Product[] = [
       keywords: ["blueberry scones", "scones in buckets", "tea time delicacies South Africa"],
       ogTitle: "Freshly Baked Scones in Buckets | Crispy Crumbs",
       ogDescription: "Blueberry scones and available bucket sizes from Crispy Crumbs.",
-      ogImage: "/images/scones 1.jpeg",
+      ogImage: "/images/Blueberry Scones.jpg",
       alt: "Fresh blueberry scones from Crispy Crumbs",
       h1: "Freshly Baked Scones",
       h2: ["Blueberry scones", "Bucket sizes", "Tea time ordering"]
@@ -258,19 +221,21 @@ export const catalogue: Product[] = [
   {
     id: "melting-moments",
     slug: "melting-moments",
-    name: "Melting Moments",
-    category: "Tea Time Delicacies",
-    collections: ["All Products", "Tea Time Delicacies"],
+    name: "Melting Moments Biscuits",
+    category: "Biscuits",
+    collections: ["All Products", "Biscuits", "Tea Time Delicacies"],
     description: "Classic melting moments biscuits in the bakery's tea time collection, without a filling.",
     longDescription:
       "Melting moments are presented as simple, buttery tea time biscuits in the bakery's delicatesse collection. These biscuits are not filled sandwich biscuits and should be ordered according to the sizes already confirmed in the current product range.",
-    image: "/images/scones 1.jpeg",
-    images: ["/images/scones 1.jpeg", "/images/hero-bakery.png", "/images/cookies.png"],
+    image: "/images/Biscuits.jpg",
+    images: ["/images/Biscuits.jpg"],
     altText: "Classic melting moments biscuits",
     available: true,
     flavours: ["Classic"],
     variants: [
-      { id: "melting-moments-standard", flavour: "Classic", optionLabel: "Classic pack", size: "Classic pack", price: undefined, status: "needs_confirmation", available: true, internalNotes: "Confirmed sizes and prices still require review before publication." }
+      { id: "melting-moments-5l", flavour: "Classic", optionLabel: "5 L bucket", size: "5 L bucket", price: 380, status: "confirmed", available: true },
+      { id: "melting-moments-10l", flavour: "Classic", optionLabel: "10 L bucket", size: "10 L bucket", price: 700, status: "confirmed", available: true },
+      { id: "melting-moments-20l", flavour: "Classic", optionLabel: "20 L bucket", size: "20 L bucket", price: 1150, status: "confirmed", available: true }
     ],
     seo: {
       title: "Melting Moments Biscuits | Crispy Crumbs",
@@ -280,10 +245,40 @@ export const catalogue: Product[] = [
       keywords: ["melting moments biscuits", "Tea Time Delicacies", "butter biscuits"],
       ogTitle: "Melting Moments Biscuits | Crispy Crumbs",
       ogDescription: "Classic melting moments biscuits from the Tea Time Delicacies collection.",
-      ogImage: "/images/scones 1.jpeg",
+      ogImage: "/images/Biscuits.jpg",
       alt: "Melting moments tea time biscuits",
       h1: "Melting Moments",
       h2: ["Tea time collection", "Available options", "Ordering details"]
+    }
+  },
+  {
+    id: "tea-time-box",
+    slug: "tea-time-box",
+    name: "Tea Time Box",
+    category: "Mix and Match",
+    collections: ["All Products", "Mix and Match", "Tea Time Delicacies"],
+    description: "A Crispy Crumbs tea time box with an assortment of bakery treats.",
+    longDescription: "The Tea Time Box brings together an assortment of Crispy Crumbs baked treats in one box for sharing.",
+    image: "/images/Tea Time Box open.jpg",
+    images: ["/images/Tea Time Box open.jpg", "/images/Tea Time Box.jpg"],
+    altText: "Open Crispy Crumbs Tea Time Box filled with baked treats",
+    available: true,
+    flavours: ["Tea Time Box"],
+    variants: [
+      { id: "tea-time-box-standard", flavour: "Tea Time Box", optionLabel: "Tea Time Box", size: "Tea Time Box", price: 250, status: "confirmed", available: true }
+    ],
+    seo: {
+      title: "Tea Time Box | Crispy Crumbs",
+      description: "Order the Crispy Crumbs Tea Time Box, a bakery assortment for sharing, priced at R250.",
+      canonical: "/products/tea-time-box",
+      keyword: "tea time box",
+      keywords: ["tea time box", "bakery treat box", "Crispy Crumbs tea time"],
+      ogTitle: "Tea Time Box | Crispy Crumbs",
+      ogDescription: "A Crispy Crumbs bakery assortment for sharing.",
+      ogImage: "/images/Tea Time Box open.jpg",
+      alt: "Open Crispy Crumbs Tea Time Box filled with baked treats",
+      h1: "Tea Time Box",
+      h2: ["Tea time treats", "Box details", "Ordering"]
     }
   },
   {
@@ -411,3 +406,5 @@ export const catalogue: Product[] = [
     }
   }
 ];
+
+export const catalogue: Product[] = products;

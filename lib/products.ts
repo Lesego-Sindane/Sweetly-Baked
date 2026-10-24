@@ -12,7 +12,7 @@ export function getAdminProducts() {
 }
 
 export function getProduct(id: string) {
-  return catalogue.find((product) => product.id === id || product.slug === id) ?? null;
+  return catalogue.find((product) => product.available && (product.id === id || product.slug === id)) ?? null;
 }
 
 export function getRelatedProducts(product: Product, products: Product[]) {
