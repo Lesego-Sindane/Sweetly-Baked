@@ -2,35 +2,38 @@ import type { Product } from "@/types";
 
 const products: Product[] = [
   {
-    id: "plain-biscuits",
-    slug: "plain-biscuits",
-    name: "Plain Biscuits",
+    id: "biscuits",
+    slug: "biscuits",
+    name: "Biscuits",
     category: "Biscuits",
     collections: ["All Products", "Biscuits"],
-    description: "Classic plain biscuits in convenient bulk buckets, made for sharing and easy serving.",
+    description: "Choose Plain Biscuits or Melting Moments Biscuits in convenient 5 L, 10 L, and 20 L buckets.",
     longDescription:
-      "Plain biscuits are available in 5 L, 10 L, and 20 L buckets to suit smaller gatherings or larger ordering needs. These straightforward bulk options are ideal for sharing, serving, and events.",
+      "Choose between Plain Biscuits and unfilled Melting Moments Biscuits. Both options are available in 5 L, 10 L, and 20 L buckets for sharing and serving.",
     image: "/images/Biscuits.jpg",
     images: ["/images/Biscuits.jpg"],
-    altText: "Plain biscuit bucket from Crispy Crumbs",
+    altText: "Biscuits from Crispy Crumbs",
     available: true,
-    flavours: ["Plain"],
+    flavours: ["Plain Biscuits", "Melting Moments Biscuits"],
     variants: [
-      { id: "plain-biscuits-5l", flavour: "Plain", optionLabel: "5 L bucket", size: "5 L bucket", price: 250, status: "confirmed", available: true },
-      { id: "plain-biscuits-10l", flavour: "Plain", optionLabel: "10 L bucket", size: "10 L bucket", price: 480, status: "confirmed", available: true },
-      { id: "plain-biscuits-20l", flavour: "Plain", optionLabel: "20 L bucket", size: "20 L bucket", price: 850, status: "confirmed", available: true }
+      { id: "biscuits-plain-5l", flavour: "Plain Biscuits", optionLabel: "5 L bucket", size: "5 L bucket", price: 250, status: "confirmed", available: true },
+      { id: "biscuits-plain-10l", flavour: "Plain Biscuits", optionLabel: "10 L bucket", size: "10 L bucket", price: 480, status: "confirmed", available: true },
+      { id: "biscuits-plain-20l", flavour: "Plain Biscuits", optionLabel: "20 L bucket", size: "20 L bucket", price: 850, status: "confirmed", available: true },
+      { id: "biscuits-melting-moments-5l", flavour: "Melting Moments Biscuits", optionLabel: "5 L bucket", size: "5 L bucket", price: 380, status: "confirmed", available: true },
+      { id: "biscuits-melting-moments-10l", flavour: "Melting Moments Biscuits", optionLabel: "10 L bucket", size: "10 L bucket", price: 700, status: "confirmed", available: true },
+      { id: "biscuits-melting-moments-20l", flavour: "Melting Moments Biscuits", optionLabel: "20 L bucket", size: "20 L bucket", price: 1150, status: "confirmed", available: true }
     ],
     seo: {
-      title: "Plain Biscuits in Bulk Buckets | Crispy Crumbs",
-      description: "Order plain biscuits from Crispy Crumbs in convenient 5 L, 10 L and 20 L buckets. Explore bulk options for sharing and serving.",
-      canonical: "/products/plain-biscuits",
-      keyword: "plain biscuits in bulk",
-      keywords: ["plain biscuits in bulk", "bulk biscuits South Africa", "plain biscuit buckets", "sharing biscuits"],
-      ogTitle: "Plain Biscuits in Bulk Buckets | Crispy Crumbs",
-      ogDescription: "Classic plain biscuits available in 5 L, 10 L and 20 L buckets.",
+      title: "Biscuits in Bulk Buckets | Crispy Crumbs",
+      description: "Choose Plain Biscuits or Melting Moments Biscuits in 5 L, 10 L, and 20 L buckets from Crispy Crumbs.",
+      canonical: "/products/biscuits",
+      keyword: "biscuits in bulk",
+      keywords: ["biscuits in bulk", "plain biscuits", "melting moments biscuits", "biscuits South Africa"],
+      ogTitle: "Biscuits in Bulk Buckets | Crispy Crumbs",
+      ogDescription: "Plain Biscuits and Melting Moments Biscuits in three bucket sizes.",
       ogImage: "/images/Biscuits.jpg",
-      alt: "Plain biscuit buckets from Crispy Crumbs",
-      h1: "Plain Biscuits in Bulk Buckets",
+      alt: "Biscuits from Crispy Crumbs",
+      h1: "Biscuits",
       h2: ["Bucket sizes", "Bulk ordering", "Serving options"]
     }
   },
@@ -219,45 +222,12 @@ const products: Product[] = [
     }
   },
   {
-    id: "melting-moments",
-    slug: "melting-moments",
-    name: "Melting Moments Biscuits",
-    category: "Biscuits",
-    collections: ["All Products", "Biscuits", "Tea Time Delicacies"],
-    description: "Classic melting moments biscuits in the bakery's tea time collection, without a filling.",
-    longDescription:
-      "Melting moments are presented as simple, buttery tea time biscuits in the bakery's delicatesse collection. These biscuits are not filled sandwich biscuits and should be ordered according to the sizes already confirmed in the current product range.",
-    image: "/images/Biscuits.jpg",
-    images: ["/images/Biscuits.jpg"],
-    altText: "Classic melting moments biscuits",
-    available: true,
-    flavours: ["Classic"],
-    variants: [
-      { id: "melting-moments-5l", flavour: "Classic", optionLabel: "5 L bucket", size: "5 L bucket", price: 380, status: "confirmed", available: true },
-      { id: "melting-moments-10l", flavour: "Classic", optionLabel: "10 L bucket", size: "10 L bucket", price: 700, status: "confirmed", available: true },
-      { id: "melting-moments-20l", flavour: "Classic", optionLabel: "20 L bucket", size: "20 L bucket", price: 1150, status: "confirmed", available: true }
-    ],
-    seo: {
-      title: "Melting Moments Biscuits | Crispy Crumbs",
-      description: "Discover melting moments from Crispy Crumbs in the Tea Time Delicacies collection. Explore the available product options and ordering details.",
-      canonical: "/products/melting-moments",
-      keyword: "melting moments biscuits",
-      keywords: ["melting moments biscuits", "Tea Time Delicacies", "butter biscuits"],
-      ogTitle: "Melting Moments Biscuits | Crispy Crumbs",
-      ogDescription: "Classic melting moments biscuits from the Tea Time Delicacies collection.",
-      ogImage: "/images/Biscuits.jpg",
-      alt: "Melting moments tea time biscuits",
-      h1: "Melting Moments",
-      h2: ["Tea time collection", "Available options", "Ordering details"]
-    }
-  },
-  {
-    id: "tea-time-box",
-    slug: "tea-time-box",
-    name: "Tea Time Box",
+    id: "mix-and-match",
+    slug: "mix-and-match",
+    name: "Mix and Match",
     category: "Mix and Match",
-    collections: ["All Products", "Mix and Match", "Tea Time Delicacies"],
-    description: "A Crispy Crumbs tea time box with an assortment of bakery treats.",
+    collections: ["All Products", "Mix and Match"],
+    description: "Choose the Tea Time Box from the Crispy Crumbs Mix and Match range.",
     longDescription: "The Tea Time Box brings together an assortment of Crispy Crumbs baked treats in one box for sharing.",
     image: "/images/Tea Time Box open.jpg",
     images: ["/images/Tea Time Box open.jpg", "/images/Tea Time Box.jpg"],
@@ -265,19 +235,19 @@ const products: Product[] = [
     available: true,
     flavours: ["Tea Time Box"],
     variants: [
-      { id: "tea-time-box-standard", flavour: "Tea Time Box", optionLabel: "Tea Time Box", size: "Tea Time Box", price: 250, status: "confirmed", available: true }
+      { id: "mix-and-match-tea-time-box", flavour: "Tea Time Box", optionLabel: "Tea Time Box", size: "Tea Time Box", price: 250, status: "confirmed", available: true }
     ],
     seo: {
-      title: "Tea Time Box | Crispy Crumbs",
-      description: "Order the Crispy Crumbs Tea Time Box, a bakery assortment for sharing, priced at R250.",
-      canonical: "/products/tea-time-box",
-      keyword: "tea time box",
-      keywords: ["tea time box", "bakery treat box", "Crispy Crumbs tea time"],
-      ogTitle: "Tea Time Box | Crispy Crumbs",
+      title: "Mix and Match | Crispy Crumbs",
+      description: "Explore Mix and Match from Crispy Crumbs and choose the Tea Time Box, priced at R250.",
+      canonical: "/products/mix-and-match",
+      keyword: "mix and match bakery box",
+      keywords: ["mix and match", "tea time box", "bakery treat box", "Crispy Crumbs tea time"],
+      ogTitle: "Mix and Match | Crispy Crumbs",
       ogDescription: "A Crispy Crumbs bakery assortment for sharing.",
       ogImage: "/images/Tea Time Box open.jpg",
       alt: "Open Crispy Crumbs Tea Time Box filled with baked treats",
-      h1: "Tea Time Box",
+      h1: "Mix and Match",
       h2: ["Tea time treats", "Box details", "Ordering"]
     }
   },
@@ -407,4 +377,4 @@ const products: Product[] = [
   }
 ];
 
-export const catalogue: Product[] = products;
+export const catalogue: Product[] = products.filter((product) => !["cakes", "cupcakes", "cookies"].includes(product.id));

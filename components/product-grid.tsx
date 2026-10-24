@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/types";
 
-const collectionLabels = ["All Products", "Tea Time Delicacies", "Biscuits", "Mix and Match", "Scones", "Muffins", "Bread", "Sweet Treats", "Cakes and Cupcakes"];
+const collectionLabels = ["All Products", "Tea Time Delicacies", "Biscuits", "Mix and Match", "Scones", "Muffins", "Bread", "Sweet Treats"];
 const collectionHeroImages: Record<string, { src: string; alt: string }> = {
   Biscuits: { src: "/images/Biscuits.jpg", alt: "Crispy Crumbs biscuits in a sharing bucket" },
   "Mix and Match": { src: "/images/Tea Time Box open.jpg", alt: "Open Crispy Crumbs Tea Time Box" }
