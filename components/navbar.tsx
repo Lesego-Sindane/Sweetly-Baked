@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
-  { href: "/shop?category=aprons", label: "Aprons", subtle: true },
   { href: "/about", label: "About Us" },
   { href: "/checkout", label: "Order" },
   { href: "/contact", label: "Contact" }

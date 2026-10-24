@@ -1,4 +1,4 @@
-import { AboutPreview, ApronCollection, FAQNewsletter, FeaturedProducts, Testimonials } from "@/components/home-sections";
+import { AboutPreview, FAQNewsletter, FeaturedProducts, Testimonials } from "@/components/home-sections";
 import { Hero } from "@/components/hero";
 
 export default function HomePage() {
@@ -6,7 +6,6 @@ export default function HomePage() {
     <>
       <Hero />
       <FeaturedProducts />
-      <ApronCollection />
       <AboutPreview />
       <Testimonials />
       <FAQNewsletter />
